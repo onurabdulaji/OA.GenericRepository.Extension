@@ -1,89 +1,7 @@
-# Dependency
+﻿using System.Linq.Expressions;
 
-This library was created by .Net 9.0
-
-## Install
-```bash
-dotnet add package OA.GenericRepository
-```
-
-## UnitOfWork Implementation
-```CSharp
-public class ApplicationDbContext : IUnitOfWork
-```
-
-```CSharp
-public class ApplicationDbContext : DbContext, IUnitOfWork
-{
-    // Your DbSets...
-}
-```
-
-## Create Repository
-```CSharp
-public selead IUserRepository : IRepository<User>
-```
-
-```CSharp
-public selead UserRepository : Repository<User, ApplicationDbContext>, IUserRepository
-```
-
-<br>
-
-```CSharp
-public sealed interface IUserRepository : IRepository<User> { }
-
-public sealed class UserRepository : Repository<User, ApplicationDbContext>, IUserRepository
-{
-    public UserRepository(ApplicationDbContext context) : base(context) { }
-}
-```
-
-## Use
-```Csharp
-public selead UserService: IUserService
-
-private readonly IUserRepository _userRepository;
-private readonly IUnitOfWork _unitOfWork;
-
-public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
-{
-    _userRepository = userRepository;
-    _unitOfWork = unitOfWork;
-}
-
-public async Task AddAsync(User user, CancellationToken cancellationToken)
-{
-    await _userRepository.AddAsync(user, cancellationToken);
-    await _unitOfWork.SaveChangesAsync(cancellationToken);
-}
-
-public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
-{
-    User? user = await _userRepository.FirstOrDefaultAsync(p=> p.Id == id, cancellationToken);
-    return user;
-}
-
-public async Task<IList<User>> GetAllAsync(CancellationToken cancellationToken)
-{
-    IList<User> users = await _userRepository.GetAll().ToListAsync(cancellationToken);
-    return users;
-}
-```
-
-## Dependency Injection
-```CSharp
-builder.Service.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUnitOfWork>(srv => srv.GetRequiredService<ApplicationDbContext>());
-```
-
-## Methods
-This library have two services.
-IRepository, IUnitOfWork
-
-```Csharp
-public interface IRepository<TEntity>
-    where TEntity : class
+namespace OA.GenericRepository.GenericRepositoryPattern.Interfaces;
+public interface IRepository<TEntity> where TEntity : class
 {
     IQueryable<TEntity> GetAll();
     IQueryable<TEntity> GetAllWithTracking();
@@ -107,10 +25,10 @@ public interface IRepository<TEntity>
     void AddRange(ICollection<TEntity> entities);
     void Update(TEntity entity);
     void UpdateRange(ICollection<TEntity> entities);
-    Task DeleteByIdAsync(string id);
+    Task DeleteByGuidIdAsync(Guid id);
+    Task DeleteByIntIdAsync(int id);
     Task DeleteByExpressionAsync(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default);
     void Delete(TEntity entity);
     void DeleteRange(ICollection<TEntity> entities);
     IQueryable<KeyValuePair<bool, int>> CountBy(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default);
 }
-```
