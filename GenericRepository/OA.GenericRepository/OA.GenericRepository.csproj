@@ -4,20 +4,44 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Version>1.0.0</Version>
-		<Authors>OnurAbdulaji</Authors>
 		<PackageId>OA.GenericRepository</PackageId>
-		<Company>OnurAbdulaji</Company>
-		<Description>Generic repository for Entity Framework Core.</Description>
-		<PackageTags>efcore repository generic</PackageTags>
-		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+		<Title>OA.GenericRepository</Title>
+		<Authors>Onur Abdulaji</Authors>
+		<Product>OA.GenericRepository</Product>
+		<Description>Generic Repository Design Pattern</Description>
+		<Copyright>Copyright © 2025 Onur Abdulaji</Copyright>
+		<PackageProjectUrl>https://www.nuget.org/packages/OA.GenericRepository/</PackageProjectUrl>
 		<PackageIcon>onurabdulajidev.png</PackageIcon>
-		<Copyright>Copyright © 2025 Onur Abdulaji"</Copyright>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/onurabdulaji/OA.GenericRepository.Extension</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>.Net Core</PackageTags>
+		<PackageReleaseNotes>First Release 1.0.0</PackageReleaseNotes>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\Readme.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
 	</ItemGroup>
 
+	
+
+	<ItemGroup>
+	  <None Update="onurabdulajidev.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+	
+	
 </Project>
