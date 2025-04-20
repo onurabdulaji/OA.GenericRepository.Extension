@@ -22,3 +22,4 @@ SOFTWARE.
 
 
 OARepositoryKey
+https://gravatar.com/observationsoftly07eb41e1a6

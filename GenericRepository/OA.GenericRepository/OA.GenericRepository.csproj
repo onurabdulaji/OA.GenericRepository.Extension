@@ -11,7 +11,9 @@
 		<Company>OnurAbdulaji</Company>
 		<Description>Generic repository for Entity Framework Core.</Description>
 		<PackageTags>efcore repository generic</PackageTags>
-		<RepositoryUrl>https://github.com/onurabdulaji/OA.GenericRepository.Extension</RepositoryUrl>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+		<PackageIcon>onurabdulajidev.png</PackageIcon>
+		<Copyright>Copyright © 2025 Onur Abdulaji"</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>
